@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en" class="evidence-html">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#162338">
+  <meta name="description" content="Explore the evidence behind LEX-NLI: model results, human annotations, worked lexical explanations, and formal-proof caveats.">
+  <title>Explore the evidence · LEX-NLI · EMNLP 2026</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="./" aria-label="LEX-NLI home"><span class="brand-mark" aria-hidden="true">⊑</span><span>LEX-NLI</span></a>
+      <div class="event">EMNLP 2026<br>Paper companion</div>
+    </div>
+  </header>
+  <main class="shell" id="top">
+    <a class="back-link" href="./">← Back to the summary</a>
+    <section class="intro evidence-intro" aria-labelledby="evidence-title">
+      <p class="eyebrow">For curious poster visitors</p>
+      <h1 id="evidence-title">Explore the evidence</h1>
+      <p class="dek">The short page gives you the result. Here are the model scores, the human reference process, two examples, and a case where proof success needs careful interpretation.</p>
+      <nav class="jump-nav" aria-label="On this page">
+        <a href="#models">Model results</a>
+        <a href="#annotations">Human references</a>
+        <a href="#examples">Worked examples</a>
+        <a href="#proof-case">Proof case</a>
+      </nav>
+    </section>
+
+    <section class="section evidence-section" id="models" aria-labelledby="models-title">
+      <p class="section-kicker">01 · The scores</p>
+      <h2 id="models-title">How did each model explain entailment?</h2>
+      <p class="lede">These are the paper's primary LEX-NLI results on 362 entailment problems. Raw micro-F1 compares predicted lexical relations with the accepted human reference sets. Values are means across five runs; higher is better.</p>
+      <div class="callout"><strong>Reference point:</strong> the four annotators average 84.9 micro-F1 and 80.9% exact match. The best model reaches 73.1 micro-F1 and 58.2% exact match.</div>
+      <div class="model-grid" aria-label="Eight model results">
+        <article class="model-card" style="--score-width:73.1%"><header><h3>Claude Sonnet 4.5</h3><span class="score">73.1</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>58.2%</dd></div><div><dt>Precision</dt><dd>64.5%</dd></div><div><dt>Recall</dt><dd>84.2%</dd></div><div><dt>Support</dt><dd>100%</dd></div></dl></article>
+        <article class="model-card" style="--score-width:72.3%"><header><h3>Gemini 3.1 Flash-Lite</h3><span class="score">72.3</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>57.9%</dd></div><div><dt>Precision</dt><dd>64.4%</dd></div><div><dt>Recall</dt><dd>82.6%</dd></div><div><dt>Support</dt><dd>100%</dd></div></dl></article>
+        <article class="model-card" style="--score-width:71.9%"><header><h3>Gemini 3.5 Flash</h3><span class="score">71.9</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>58.1%</dd></div><div><dt>Precision</dt><dd>63.6%</dd></div><div><dt>Recall</dt><dd>82.6%</dd></div><div><dt>Support</dt><dd>100%</dd></div></dl></article>
+        <article class="model-card" style="--score-width:69.3%"><header><h3>GPT-5.4</h3><span class="score">69.3</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>57.5%</dd></div><div><dt>Precision</dt><dd>61.0%</dd></div><div><dt>Recall</dt><dd>80.2%</dd></div><div><dt>Support</dt><dd>100%</dd></div></dl></article>
+        <article class="model-card" style="--score-width:67.2%"><header><h3>Claude Haiku 4.5</h3><span class="score">67.2</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>50.6%</dd></div><div><dt>Precision</dt><dd>57.1%</dd></div><div><dt>Recall</dt><dd>81.8%</dd></div><div><dt>Support</dt><dd>100%</dd></div></dl></article>
+        <article class="model-card" style="--score-width:56%"><header><h3>GPT-5.4 Mini</h3><span class="score">56.0</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>38.7%</dd></div><div><dt>Precision</dt><dd>46.3%</dd></div><div><dt>Recall</dt><dd>71.0%</dd></div><div><dt>Support</dt><dd>100%</dd></div></dl></article>
+        <article class="model-card" style="--score-width:55%"><header><h3>GPT-OSS-20B</h3><span class="score">55.0</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>44.0%</dd></div><div><dt>Precision</dt><dd>48.8%</dd></div><div><dt>Recall</dt><dd>63.0%</dd></div><div><dt>Support</dt><dd>99.8%</dd></div></dl></article>
+        <article class="model-card" style="--score-width:30.6%"><header><h3>Gemma 3 4B</h3><span class="score">30.6</span></header><p class="score-label">raw micro-F1</p><div class="score-track" aria-hidden="true"><span></span></div><dl class="score-stats"><div><dt>Exact match</dt><dd>14.1%</dd></div><div><dt>Precision</dt><dd>21.4%</dd></div><div><dt>Recall</dt><dd>53.8%</dd></div><div><dt>Support</dt><dd>98.1%</dd></div></dl></article>
+      </div>
+      <p class="source-note"><strong>How to read the cards:</strong> exact match requires a whole LEX set to match an accepted reference. Support is the share of problems evaluated; lower support reflects API error responses. The baselines in Table 3 include WordNet &amp; Oracle at 70.5 micro-F1, WordNet &amp; Rules at 51.0, and an Empty LEX baseline at 0.0. <a href="./paper.pdf#page=7">Paper Table 3</a></p>
+      <details><summary>Why is recall higher than precision?</summary><p>The top five models predict about 1.4 relations per LEX set, while references average 1.0. They also produce fewer empty sets than the references (15% versus 29%). Extra relations can find more of what is needed while lowering precision. See the paper's Section 7.1.</p></details>
+    </section>
+
+    <section class="section evidence-section" id="annotations" aria-labelledby="annotations-title">
+      <p class="section-kicker">02 · The reference answers</p>
+      <h2 id="annotations-title">How were human explanations made?</h2>
+      <p class="lede">The authors curated 280 SNLI and 82 SICK entailments. Each problem received three independent LEX annotations, followed by adjudication when the explanations differed.</p>
+      <ol class="process-list">
+        <li><strong>1 · Select the inference</strong><span>The final set has 362 problems. Some need no added lexical relation: 29% of reference LEX sets are empty.</span></li>
+        <li><strong>2 · Annotate independently</strong><span>Three annotators each identify the lexical relations needed to explain the entailment.</span></li>
+        <li><strong>3 · Review differences</strong><span>Agreement or adjudication yields one accepted LEX set for 223 problems. The remaining 139 retain multiple valid reference sets; 22 problems receive a fourth alternative during adjudication.</span></li>
+      </ol>
+      <div class="baseline-grid" aria-label="Reference dataset at a glance">
+        <div><strong>362 problems</strong><span>280 SNLI · 82 SICK</span></div>
+        <div><strong>1,108 LEX sets</strong><span>including fourth alternatives</span></div>
+        <div><strong>1–4 references</strong><span>per problem after adjudication</span></div>
+      </div>
+      <p class="source-note">The 84.9 annotator micro-F1 is the mean of four annotator-level scores, each compared against the other available references for that annotator's problems. <a href="./paper.pdf#page=4">Paper Section 4 and Table 2</a></p>
+    </section>
+
+    <section class="section evidence-section" id="examples" aria-labelledby="examples-title">
+      <p class="section-kicker">03 · Worked examples</p>
+      <h2 id="examples-title">What does a LEX actually explain?</h2>
+      <div class="evidence-card">
+        <h3>One inference, two lexical bridges</h3>
+        <p class="sentence"><strong>Premise</strong> A zoo keeper holds a chinchilla.</p>
+        <p class="sentence"><strong>Hypothesis</strong> A person holds a small animal.</p>
+        <div class="lex-steps">
+          <div class="lex-step"><strong>zoo keeper ⊑ person</strong> explains the person.</div>
+          <div class="lex-step"><strong>chinchilla ⊑ small animal</strong> explains the animal.</div>
+        </div>
+        <p>LEX makes the needed word-level knowledge explicit. It supplies part of the explanation; LangPro still decides whether a formal proof follows.</p>
+      </div>
+      <div class="evidence-card">
+        <h3>Several references can be valid</h3>
+        <p class="sentence"><strong>Premise</strong> A woman observes a rusted antique car.</p>
+        <p class="sentence"><strong>Hypothesis</strong> A woman looks at an old car.</p>
+        <p>Two of the accepted reference variants are:</p>
+        <div class="variant-grid">
+          <div class="variant"><strong>Variant A</strong><p>antique ⊑ old<br>observe ⊑ look</p></div>
+          <div class="variant"><strong>Variant B</strong><p>antique car ⊑ old car<br>observe ⊑ look at</p></div>
+        </div>
+        <p class="caption">This paper example has four accepted combinations. They differ in how much of the phrase each relation covers, which is why scoring against one answer alone would be too strict.</p>
+      </div>
+      <p class="source-note"><a href="./paper.pdf#page=1">Paper Figure 1</a> and <a href="./paper.pdf#page=4">Table 1</a>.</p>
+    </section>
+
+    <section class="section evidence-section" id="proof-case" aria-labelledby="proof-title">
+      <p class="section-kicker">04 · Interpreting proofs</p>
+      <h2 id="proof-title">When can a successful proof mislead?</h2>
+      <p class="lede">On a separate set of 1,000 SNLI entailments, LangPro proves 157 with WordNet alone. The best agentic LLM plus WordNet reaches 212. Those 55 extra proofs measure coverage, not the soundness of every proposed relation.</p>
+      <details><summary>See proof counts for all five models</summary>
+        <p>LangPro proofs out of 1,000 SNLI entailments when model-generated relations are combined with WordNet. One-shot → agentic:</p>
+        <ul class="proof-counts">
+          <li><span>Gemini 3.1 Flash-Lite</span><strong>179 → 193</strong></li>
+          <li><span>Claude Haiku 4.5</span><strong>179 → 190</strong></li>
+          <li><span>GPT-5.4 Mini</span><strong>178 → 199</strong></li>
+          <li><span>GPT-OSS-20B</span><strong>174 → 212</strong></li>
+          <li><span>Gemma 3 4B</span><strong>182 → 182</strong></li>
+        </ul>
+        <p class="source-note"><a href="./paper.pdf#page=8">Paper Table 4</a>. The WordNet-only baseline is 157.</p>
+      </details>
+      <div class="evidence-card">
+        <h3>The skier case</h3>
+        <p class="sentence"><strong>Premise</strong> Two skiers stand near a snowy mountain.</p>
+        <p class="sentence"><strong>Hypothesis</strong> Some humans standing.</p>
+        <div class="case-flow">
+          <div><strong>A reasonable relation is supplied</strong><span>skier ⊑ human still does not let LangPro prove the entailment.</span></div>
+          <div><strong>A parser mismatch blocks the proof</strong><span>The pipeline treats “standing” in the hypothesis as a noun, while the premise uses “stand” as a verb.</span></div>
+          <div><strong>The agentic revision unlocks a proof</strong><span>The model adds stand ⊑ standing and standing ⊑ stand. The eventual proof uses stand ⊑ standing with skier ⊑ human.</span></div>
+        </div>
+        <p>The new relation bridges an error in the analysis pipeline. The proof succeeds, but that does not establish that the added relation is good lexical knowledge for explaining the inference.</p>
+      </div>
+      <p class="source-note">The paper's manual analysis of additional Gemini 3.1 Flash-Lite proofs found that only five of the examined problems included an added relation judged semantically reasonable in isolation. Other gains often compensated for parser or prover weaknesses. <a href="./paper.pdf#page=9">Paper Section 8.2</a></p>
+      <details><summary>What other mistakes did the authors find?</summary><p>In their error analysis, models sometimes repeat inflectional variants of one relation, or choose a whole phrase where the task expects smaller lexical relations. The authors also found valid predictions missing from the human references. These issues matter when interpreting an exact score as a complete measure of explanation quality. See Section 8.1.</p></details>
+    </section>
+
+    <section class="section" aria-label="Continue reading">
+      <div class="evidence-outro">
+        <h2>Want every detail?</h2>
+        <p>The paper has the prompts, annotation guidelines, full tables, and additional proof cases.</p>
+        <div class="actions"><a class="button" href="./paper.pdf">Read the full paper</a><a class="button secondary" href="https://github.com/jorrytdejong/kbprojection" target="_blank" rel="noopener noreferrer">Code and data</a></div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="shell">LEX-NLI · EMNLP 2026 · <a href="./">Summary</a> · <a href="#top">Back to top</a></div></footer>
+</body>
+</html>
